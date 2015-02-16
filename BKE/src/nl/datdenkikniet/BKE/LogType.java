@@ -2,7 +2,9 @@ package nl.datdenkikniet.BKE;
 
 public enum LogType {
 ERROR,
-MOVE,
+SET,
 END,
-START
+START,
+RESTART, 
+PLAYERWIN, AIWIN
 }

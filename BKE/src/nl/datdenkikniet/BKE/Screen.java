@@ -1,6 +1,5 @@
 package nl.datdenkikniet.BKE;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -11,15 +10,23 @@ public static void createWindow(){
 	frame = new JFrame("Boter, Kaas en Eieren");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setResizable(false);
-	frame.setSize(new Dimension(500,500));
+	frame.setSize(new Dimension(300,200));
 	frame.setVisible(true);
+	frame.addKeyListener(new KeyL());
+	frame.setLocationRelativeTo(null);
 	updateFrame();
 }
 public static void updateFrame(){
-	frame.removeAll();
-	frame.getContentPane().add(BKELayout.getLayout(), BorderLayout.CENTER);
+	frame.getContentPane().removeAll();
+	frame.add(BKELayout.getLayout());
 	if (Main.logLayout){
 	System.out.println(BKELayout.getLayout().getText());
 	}
+	frame.revalidate();
+	frame.repaint();
+	frame.pack();
+}
+public static void stop(){
+	frame.dispose();
 }
 }
