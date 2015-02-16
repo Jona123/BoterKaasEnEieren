@@ -17,7 +17,7 @@ public class AI {
 				}
 			}
 		}
-		for (int i = 0; i<3; i=i+3){
+		for (int i = 0; i<9; i=i+3){
 			if (isSet[i] && isSet[i+1] && isSet[i+2]){
 				if (hasSet[i] == Executor.PLAYER){
 					BKELayout.init();
