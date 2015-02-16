@@ -5,32 +5,32 @@ import javax.swing.SwingConstants;
 
 
 public class BKELayout {
-private static Boolean[] cellsAffected = new Boolean[9];
-private static Executor[] whoChanged = new Executor[9];
-public static void init(){
-	for (int i = 0; i < whoChanged.length; i++){
-		cellsAffected[i] = false;
-		whoChanged[i] = Executor.NONE;
-	}
-}
-public static void set(int number, Executor ex){
-	cellsAffected[number] = true;
-	whoChanged[number] = ex;
-	Screen.updateFrame();
-	Main.logAction(LogType.SET, ex, number);
-}
-public static void unset(int number, Executor ex){
-	cellsAffected[number] = false;
-	whoChanged[number] = ex;
-	Screen.updateFrame();
-	Main.logAction(LogType.SET, ex, number);
-}
-public static JLabel getLayout(){
-	String str = "<html><style> p {display: block; margin: 0px auto;}</style><p>Description:<br>Numbers = unoccupied slots (press number to fill the slot)<br>O = Slot occupied by the Player<br>X = slot occupied by the AI<br> Press R to restart<br>Press E to end the game<br>";
-	for (int i = 0; i < whoChanged.length; i++){
-		if (i%3 == 0){
-			str = str + "<br>|";
+	private static Boolean[] cellsAffected = new Boolean[9];
+	private static Executor[] whoChanged = new Executor[9];
+	public static void init(){
+		for (int i = 0; i < whoChanged.length; i++){
+			cellsAffected[i] = false;
+			whoChanged[i] = Executor.NONE;
 		}
+	}
+	public static void set(int number, Executor ex){
+		cellsAffected[number] = true;
+		whoChanged[number] = ex;
+		Screen.updateFrame();
+		Main.logAction(LogType.SET, ex, number);
+	}
+	public static void unset(int number, Executor ex){
+		cellsAffected[number] = false;
+		whoChanged[number] = ex;
+		Screen.updateFrame();
+		Main.logAction(LogType.SET, ex, number);
+	}
+	public static JLabel getLayout(){
+		String str = "<html><style> p {display: block; margin: 0px auto;}</style><p>Description:<br>Numbers = unoccupied slots (press number to fill the slot)<br>O = Slot occupied by the Player<br>X = slot occupied by the AI<br> Press R to restart<br>Press E to end the game<br>";
+		for (int i = 0; i < whoChanged.length; i++){
+			if (i%3 == 0){
+				str = str + "<br>|";
+			}
 			if (whoChanged[i] == Executor.NONE){
 				str = str + (i+1) + "|";
 			} else if (whoChanged[i] == Executor.AI){
@@ -39,15 +39,15 @@ public static JLabel getLayout(){
 				str = str +  "O|";
 			}
 		}
-	str = str + "</p></html>";
-	JLabel label = new JLabel(str, SwingConstants.CENTER);
-	label.setVisible(true);
-	return label;
-}
-public static Boolean[] getCellsAffected(){
-	return cellsAffected;
-}
-public static Executor[] getWhoSet(){
-	return whoChanged;
-}
+		str = str + "</p></html>";
+		JLabel label = new JLabel(str, SwingConstants.CENTER);
+		label.setVisible(true);
+		return label;
+	}
+	public static Boolean[] getCellsAffected(){
+		return cellsAffected;
+	}
+	public static Executor[] getWhoSet(){
+		return whoChanged;
+	}
 }

@@ -1,8 +1,8 @@
 package nl.datdenkikniet.BKE;
- 
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
- 
+
 public class KeyL implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		try {
@@ -30,10 +30,10 @@ public class KeyL implements KeyListener {
 		}
 	}
 	public void keyPressed(KeyEvent e) {
-		
+
 	}
 	public void keyReleased(KeyEvent e) {
-		
+
 	}
 
 }
