@@ -14,13 +14,13 @@ public class Screen {
 		frame.setVisible(true);
 		frame.addKeyListener(new KeyL());
 		frame.setLocationRelativeTo(null);
-		updateFrame();
+		updateFrame(false);
 	}
-	public static void updateFrame(){
+	public static void updateFrame(boolean bool){
 		frame.getContentPane().removeAll();
-		frame.add(BKELayout.getLayout());
+		frame.add(BKELayout.getLayout(bool));
 		if (Main.logLayout){
-			System.out.println(BKELayout.getLayout().getText());
+			System.out.println(BKELayout.getLayout(false).getText());
 		}
 		frame.revalidate();
 		frame.repaint();

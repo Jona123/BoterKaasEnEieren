@@ -7,5 +7,7 @@ public enum LogType {
 	START,
 	RESTART, 
 	PLAYERWIN,
-	AIWIN
+	AIWIN,
+	UPDATE, 
+	TIE
 }
