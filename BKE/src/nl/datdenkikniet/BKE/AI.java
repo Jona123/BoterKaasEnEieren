@@ -162,21 +162,6 @@ public class AI {
 
 				}
 			}
-			if (toTry){
-				if (!isSet[4]){
-					BKELayout.set(4, ex);
-					toTry = false;
-				}
-			}
-			if (toTry){
-				for (int i=0; i<8; i++){
-					if (!isSet[i]){
-						BKELayout.set(i, ex);
-						toTry = false;
-						break;
-					}
-				}
-			}
 		//You can't win (yet), block the opponent!
 		if (toTry){
 		for (int i = 0; i < 3; i++){
@@ -260,6 +245,22 @@ public class AI {
 					}
 				}
 
+			}
+		}
+		//no real tactical shizzle found, make a random move
+		if (toTry){
+			if (!isSet[4]){
+				BKELayout.set(4, ex);
+				toTry = false;
+			}
+		}
+		if (toTry){
+			for (int i=0; i<8; i++){
+				if (!isSet[i]){
+					BKELayout.set(i, ex);
+					toTry = false;
+					break;
+				}
 			}
 		}
 		check();
