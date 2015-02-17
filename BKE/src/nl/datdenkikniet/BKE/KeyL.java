@@ -5,17 +5,20 @@ import java.awt.event.KeyListener;
 
 public class KeyL implements KeyListener {
 	public void keyTyped(KeyEvent e) {
+	}
+	public void keyPressed(KeyEvent e) {
 		try {
 			char c = e.getKeyChar();
 			String s = String.valueOf(c); 
 			int i = Integer.valueOf(s);
 			if (BKELayout.getCellsAffected()[i-1]){
-				//denied
 				Main.errorPopUp("That slot has already been set!");
 			} else {
-				//set it
 				BKELayout.set(i-1, Executor.PLAYER);
-				AI.check();
+				boolean won = AI.check();
+				if (!won){
+				AI.doAiStuff(Executor.AI, Executor.PLAYER, BKELayout.getCellsAffected(), BKELayout.getWhoSet());
+				}
 			}
 		} catch (Exception ex){
 			if (e.getKeyChar() == 'r'){
@@ -28,9 +31,6 @@ public class KeyL implements KeyListener {
 				Main.end();
 			}
 		}
-	}
-	public void keyPressed(KeyEvent e) {
-
 	}
 	public void keyReleased(KeyEvent e) {
 
