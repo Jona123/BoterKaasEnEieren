@@ -17,7 +17,7 @@ public class KeyL implements KeyListener {
 				BKELayout.set(i-1, Executor.PLAYER);
 				boolean won = AI.check();
 				if (!won){
-				AI.doAiStuff(Executor.AI, Executor.PLAYER, BKELayout.getCellsAffected(), BKELayout.getWhoSet());
+				AI.doAiStuff(Executor.AI, Executor.PLAYER);
 				}
 			}
 		} catch (Exception ex){

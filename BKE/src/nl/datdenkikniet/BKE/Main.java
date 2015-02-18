@@ -31,8 +31,8 @@ public class Main {
 	}
 	public static void logAction(LogType action, Executor ex, int changed){
 		if (action == LogType.SET){
-			System.out.println(ex.toString() + " has set slot " + changed);
-			logAction(LogType.UPDATE, ex.toString() + " has set slot " + changed + "\n\n");
+			System.out.println(ex.toString() + " has set slot " + (changed+1));
+			logAction(LogType.UPDATE, ex.toString() + " has set slot " + (changed+1) + "\n\n");
 		} else if (action == LogType.START){
 			System.out.println("Started game");
 			logAction(LogType.UPDATE, "Started game\n\n");
