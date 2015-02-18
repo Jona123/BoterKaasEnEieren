@@ -102,7 +102,6 @@ public class AI {
 		}
 		if (toTry){
 			//check vertical
-			System.out.println("Tried to win");
 		for (int i = 0; i < 3; i++){
 			if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
 				if (!isSet[i+6]){
@@ -127,7 +126,6 @@ public class AI {
 	}
 		if (toTry){
 			//check horizontal
-			System.out.println("Tried to win");
 			for (int i = 0; i < 3; i=i+3){
 				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.AI && hasSet[i+1] == Executor.AI){
 					if (!isSet[i+2]){
@@ -154,7 +152,6 @@ public class AI {
 		//You can't win, block the player if possible
 		if (toTry){
 			//check vertical
-			System.out.println("Tried to block");
 			for (int i = 0; i < 3; i++){
 				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.PLAYER && hasSet[i+3] == Executor.PLAYER){
 					if (!isSet[i+6]){
@@ -179,7 +176,6 @@ public class AI {
 		}
 		if (toTry){
 			//check horizontal
-			System.out.println("Tried to block");
 			for (int i = 0; i < 8; i=i+3){
 				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
 					if (!isSet[i+2]){
@@ -205,7 +201,6 @@ public class AI {
 		}
 		if (toTry){
 			//check across
-			System.out.println("Tried to block");
 			if (isSet[0] && isSet[4] && hasSet[0] == Executor.PLAYER && hasSet[4] == Executor.PLAYER){
 				if (!isSet[8]){
 					BKELayout.set(8, Executor.AI);
@@ -242,7 +237,6 @@ public class AI {
 			}
 		if (toTry){
 			//corners
-			System.out.println("random");
 			for (int i=0;i<2;i=i+6){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);
@@ -255,7 +249,6 @@ public class AI {
 		}
 		if (toTry){
 			//other leftover slot
-			System.out.println("random");
 			for (int i=0;i<8;i++){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);
