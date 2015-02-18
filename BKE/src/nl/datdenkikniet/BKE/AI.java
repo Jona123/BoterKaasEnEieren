@@ -81,6 +81,7 @@ public class AI {
 		boolean toTry = true;
 		//Check if you can win
 		if (toTry){
+			System.out.println("Tried to win");
 			//check across
 			if (isSet[0] && isSet[4] && hasSet[0] == Executor.AI && hasSet[4] == Executor.AI){
 				if (!isSet[8]){
@@ -101,6 +102,7 @@ public class AI {
 		}
 		if (toTry){
 			//check vertical
+			System.out.println("Tried to win");
 		for (int i = 0; i < 3; i++){
 			if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
 				if (!isSet[i+6]){
@@ -125,6 +127,7 @@ public class AI {
 	}
 		if (toTry){
 			//check horizontal
+			System.out.println("Tried to win");
 			for (int i = 0; i < 3; i=i+3){
 				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.AI && hasSet[i+1] == Executor.AI){
 					if (!isSet[i+2]){
@@ -151,6 +154,7 @@ public class AI {
 		//You can't win, block the player if possible
 		if (toTry){
 			//check vertical
+			System.out.println("Tried to block");
 			for (int i = 0; i < 3; i++){
 				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.PLAYER && hasSet[i+3] == Executor.PLAYER){
 					if (!isSet[i+6]){
@@ -174,7 +178,34 @@ public class AI {
 			}
 		}
 		if (toTry){
+			//check horizontal
+			System.out.println("Tried to block");
+			for (int i = 0; i < 8; i=i+3){
+				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
+					if (!isSet[i+2]){
+						BKELayout.set(i+2, Executor.AI);
+						toTry = false;
+						break;
+					}
+				} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.PLAYER && hasSet[i+2] == Executor.PLAYER){
+					if (!isSet[i+1]){
+						BKELayout.set(i+1, Executor.AI);
+						toTry = false;
+						break;
+					}
+				} else if (isSet[i+2] && isSet[i+1] && hasSet[i+2] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
+					if (!isSet[i]){
+						BKELayout.set(i, Executor.AI);
+						toTry = false;
+						break;
+					}
+				}
+
+			}
+		}
+		if (toTry){
 			//check across
+			System.out.println("Tried to block");
 			if (isSet[0] && isSet[4] && hasSet[0] == Executor.PLAYER && hasSet[4] == Executor.PLAYER){
 				if (!isSet[8]){
 					BKELayout.set(8, Executor.AI);
@@ -192,39 +223,26 @@ public class AI {
 				}
 			}
 		}
+		//no real tactical shizzle found, make a another move
 		if (toTry){
-			//check horizontal
-			for (int i = 0; i < 3; i=i+3){
-				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
-					if (!isSet[i+2]){
-						BKELayout.set(i+2, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.PLAYER && hasSet[i+2] == Executor.PLAYER){
-					if (!isSet[i+1]){
-						BKELayout.set(i+1, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i+2] && isSet[i+3] && hasSet[i+2] == Executor.PLAYER && hasSet[i+3] == Executor.PLAYER){
-					if (!isSet[i]){
-						BKELayout.set(i, Executor.AI);
-						toTry = false;
-						break;
-					}
-				}
-
+			for (int i = 1; i < 8; i=i+2){
+			if (!isSet[i]){
+				BKELayout.set(i, Executor.AI);
+				toTry = false;
+				break;
+			}
 			}
 		}
-		//no real tactical shizzle found, make a random move
 		if (toTry){
+			//middle
 				if (!isSet[4]){
 					BKELayout.set(4, Executor.AI);
 					toTry = false;
 				}
 			}
 		if (toTry){
+			//corners
+			System.out.println("random");
 			for (int i=0;i<2;i=i+6){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);
@@ -236,6 +254,8 @@ public class AI {
 			}
 		}
 		if (toTry){
+			//other leftover slot
+			System.out.println("random");
 			for (int i=0;i<8;i++){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);

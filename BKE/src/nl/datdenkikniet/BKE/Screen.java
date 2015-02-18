@@ -3,6 +3,8 @@ package nl.datdenkikniet.BKE;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Screen {
 	private static JFrame frame;
@@ -14,14 +16,13 @@ public class Screen {
 		frame.setVisible(true);
 		frame.addKeyListener(new KeyL());
 		frame.setLocationRelativeTo(null);
-		updateFrame(false);
+		updateFrame();
 	}
-	public static void updateFrame(boolean bool){
+	public static void updateFrame(){
 		frame.getContentPane().removeAll();
-		frame.add(BKELayout.getLayout(bool));
-		if (Main.logLayout){
-			System.out.println(BKELayout.getLayout(false).getText());
-		}
+		JLabel label = BKELayout.getLayout();
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.add(label);
 		frame.revalidate();
 		frame.repaint();
 		frame.pack();

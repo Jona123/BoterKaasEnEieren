@@ -22,11 +22,11 @@ public class Main {
 		logAction(LogType.START, null, 0);
 		Runnable r = new Runnable(){
 			public void run(){
-				Screen.updateFrame(false);
+				Screen.updateFrame();
 			}
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.scheduleAtFixedRate(r, 0, 1000, TimeUnit.MILLISECONDS);
+		service.scheduleAtFixedRate(r, 0, 33, TimeUnit.MILLISECONDS);
 
 	}
 	public static void logAction(LogType action, Executor ex, int changed){

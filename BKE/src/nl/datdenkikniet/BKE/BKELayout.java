@@ -16,16 +16,16 @@ public class BKELayout {
 	public static void set(int number, Executor ex){
 		cellsAffected[number] = true;
 		whoChanged[number] = ex;
-		Screen.updateFrame(true);
+		Screen.updateFrame();
 		Main.logAction(LogType.SET, ex, number);
 	}
 	public static void unset(int number, Executor ex){
 		cellsAffected[number] = false;
 		whoChanged[number] = ex;
-		Screen.updateFrame(true);
+		Screen.updateFrame();
 		Main.logAction(LogType.SET, ex, number);
 	}
-	public static JLabel getLayout(boolean bool){
+	public static JLabel getLayout(){
 		String str = "<html><style> p {display: block; margin: 0px auto;}</style><p>Description:<br>Numbers = unoccupied slots (press number to fill the slot)<br>O = Slot occupied by the Player<br>X = slot occupied by the AI<br> Press R to restart<br>Press E to end the game<br>";
 		String nrml = "";
 		for (int i = 0; i < whoChanged.length; i++){
@@ -47,9 +47,6 @@ public class BKELayout {
 		str = str + "</p></html>";
 		JLabel label = new JLabel(str, SwingConstants.CENTER);
 		label.setVisible(true);
-		if (bool){
-		Main.logAction(LogType.UPDATE, nrml + "\n\n");
-		}
 		return label;
 	}
 	public static Boolean[] getCellsAffected(){
