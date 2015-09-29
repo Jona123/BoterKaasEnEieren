@@ -26,7 +26,7 @@ public class BKELayout {
 		Main.logAction(LogType.SET, ex, number);
 	}
 	public static JLabel getLayout(){
-		String str = "<html><style> p {display: block; margin: 0px auto;}</style><p>Description:<br>Numbers = unoccupied slots (press number to fill the slot)<br>O = Slot occupied by the Player<br>X = slot occupied by the AI<br> Press R to restart<br>Press E to end the game<br>";
+		String str = "<html><style>body {text-align: center; padding-bottom:10px; padding-top: 10px;} div {margin: auto;}</style><body><div><p>Description:<br>Numbers = unoccupied slots (press number to fill the slot)<br>O = Slot occupied by the Player<br>X = slot occupied by the AI<br> Press R to restart<br>Press E to end the game<br>";
 		String nrml = "";
 		for (int i = 0; i < whoChanged.length; i++){
 			if (i%3 == 0){
@@ -44,7 +44,7 @@ public class BKELayout {
 				nrml = nrml + "O|";
 			}
 		}
-		str = str + "</p></html>";
+		str = str + "</p></div></body></html>";
 		JLabel label = new JLabel(str, SwingConstants.CENTER);
 		label.setVisible(true);
 		return label;

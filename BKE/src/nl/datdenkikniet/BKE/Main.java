@@ -26,7 +26,7 @@ public class Main {
 			}
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.scheduleAtFixedRate(r, 0, 33, TimeUnit.MILLISECONDS);
+		service.scheduleAtFixedRate(r, 0, 166, TimeUnit.MILLISECONDS);
 
 	}
 	public static void logAction(LogType action, Executor ex, int changed){
@@ -64,17 +64,17 @@ public class Main {
 		Screen.stop();
 	}
 	public static void logAction(LogType update, String nrml) {
-	try {
-	if (!file.exists()){
-			file.createNewFile();
+		try {
+			if (!file.exists()){
+				file.createNewFile();
 
-	}
-	FileWriter fw = new FileWriter(file.getName(), true);
-	fw.write(nrml);
-	fw.flush();
-	fw.close();
-	} catch (Exception ex){
-		
-	}
+			}
+			FileWriter fw = new FileWriter(file.getName(), true);
+			fw.write(nrml);
+			fw.flush();
+			fw.close();
+		} catch (Exception ex){
+
+		}
 	}
 }

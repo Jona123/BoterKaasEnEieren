@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+
 public class Screen {
 	private static JFrame frame;
 	public static void createWindow(){
