@@ -81,7 +81,6 @@ public class AI {
 		boolean toTry = true;
 		//Check if you can win
 		if (toTry){
-			System.out.println("Tried to win");
 			//check across
 			if (isSet[0] && isSet[4] && hasSet[0] == Executor.AI && hasSet[4] == Executor.AI){
 				if (!isSet[8]){
@@ -102,28 +101,32 @@ public class AI {
 		}
 		if (toTry){
 			//check vertical
-		for (int i = 0; i < 3; i++){
-			if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
-				if (!isSet[i+6]){
-					BKELayout.set(i+6, Executor.AI);
-					toTry = false;
-					break;
-				}
-			} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.AI && hasSet[i+6] == Executor.AI){
-				if (!isSet[i+3]){
-					BKELayout.set(i+3, Executor.AI);
-					toTry = false;
-					break;
-				}
-			} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.AI && hasSet[i+6] == Executor.AI){
-				if (!isSet[i]){
-					BKELayout.set(i, Executor.AI);
-					toTry = false;
-					break;
+			if (!isSet[4]){
+				BKELayout.set(4, Executor.AI);
+				return;
+			}
+			for (int i = 0; i < 3; i++){
+				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
+					if (!isSet[i+6]){
+						BKELayout.set(i+6, Executor.AI);
+						toTry = false;
+						break;
+					}
+				} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.AI && hasSet[i+6] == Executor.AI){
+					if (!isSet[i+3]){
+						BKELayout.set(i+3, Executor.AI);
+						toTry = false;
+						break;
+					}
+				} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.AI && hasSet[i+6] == Executor.AI){
+					if (!isSet[i]){
+						BKELayout.set(i, Executor.AI);
+						toTry = false;
+						break;
+					}
 				}
 			}
 		}
-	}
 		if (toTry){
 			//check horizontal
 			for (int i = 0; i < 3; i=i+3){
@@ -221,20 +224,20 @@ public class AI {
 		//no real tactical shizzle found, make a another move
 		if (toTry){
 			for (int i = 1; i < 8; i=i+2){
-			if (!isSet[i]){
-				BKELayout.set(i, Executor.AI);
-				toTry = false;
-				break;
-			}
+				if (!isSet[i]){
+					BKELayout.set(i, Executor.AI);
+					toTry = false;
+					break;
+				}
 			}
 		}
 		if (toTry){
 			//middle
-				if (!isSet[4]){
-					BKELayout.set(4, Executor.AI);
-					toTry = false;
-				}
+			if (!isSet[4]){
+				BKELayout.set(4, Executor.AI);
+				toTry = false;
 			}
+		}
 		if (toTry){
 			//corners
 			for (int i=0;i<2;i=i+6){
