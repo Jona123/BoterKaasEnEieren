@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Main {
 	public static boolean logLayout = false;
+	public static int aiIsActive = 0;
 	public static int logGames = 0;
 	public static File file = new File("log.txt");
 	public static void main(String[] args){
@@ -17,6 +18,7 @@ public class Main {
 	}
 	public static void init(){
 		logGames = JOptionPane.showConfirmDialog(null,"Do you want the games to be logged to a .txt?", "Log games to file?",  JOptionPane.YES_NO_OPTION);
+		aiIsActive = JOptionPane.showConfirmDialog(null,"Do you want the ai to make moves?", "Ai active?",  JOptionPane.YES_NO_OPTION);
 		BKELayout.init();	
 		Screen.createWindow();
 		logAction(LogType.START, null, 0);
@@ -64,17 +66,22 @@ public class Main {
 		Screen.stop();
 	}
 	public static void logAction(LogType update, String nrml) {
-		try {
-			if (!file.exists()){
-				file.createNewFile();
+		if (logGames == 0){
+			try {
+				if (!file.exists()){
+					file.createNewFile();
+
+				}
+				FileWriter fw = new FileWriter(file.getName(), true);
+				fw.write(nrml);
+				fw.flush();
+				fw.close();
+			} catch (Exception ex){
 
 			}
-			FileWriter fw = new FileWriter(file.getName(), true);
-			fw.write(nrml);
-			fw.flush();
-			fw.close();
-		} catch (Exception ex){
-
 		}
+	}
+	public static boolean getAIActive(){
+		return aiIsActive != 1;
 	}
 }

@@ -16,7 +16,7 @@ public class KeyL implements KeyListener {
 			} else {
 				BKELayout.set(i-1, Executor.PLAYER);
 				boolean won = AI.check();
-				if (!won){
+				if (!won && Main.getAIActive()){
 				AI.doAiStuff(Executor.AI, Executor.PLAYER);
 				}
 			}
@@ -31,6 +31,7 @@ public class KeyL implements KeyListener {
 				Main.end();
 			}
 		}
+		AI.check();
 	}
 	public void keyReleased(KeyEvent e) {
 
