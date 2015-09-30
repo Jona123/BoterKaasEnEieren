@@ -78,190 +78,159 @@ public class AI {
 	public static void doAiStuff(Executor ex, Executor enemy){
 		Boolean[] isSet = BKELayout.getCellsAffected();
 		Executor[] hasSet = BKELayout.getWhoSet();
-		boolean toTry = true;
 		//Check if you can win
-		if (toTry){
-			//check across
-			if (isSet[0] && isSet[4] && hasSet[0] == Executor.AI && hasSet[4] == Executor.AI){
-				if (!isSet[8]){
-					BKELayout.set(8, Executor.AI);
-					toTry = false;
-				}
-			} else if (isSet[4] && isSet[8] && hasSet[4] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
-				if (!isSet[0]){
-					BKELayout.set(0, Executor.AI);
-					toTry = false;
-				}
-			} else if (isSet[0] && isSet[8] && hasSet[0] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
-				if (!isSet[4]){
-					BKELayout.set(4, Executor.AI);
-					toTry = false;
-				}
-			}
-		}
-		if (toTry){
-			//check vertical
-			for (int i = 0; i < 3; i++){
-				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
-					if (!isSet[i+6]){
-						BKELayout.set(i+6, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.AI && hasSet[i+6] == Executor.AI){
-					if (!isSet[i+3]){
-						BKELayout.set(i+3, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.AI && hasSet[i+6] == Executor.AI){
-					if (!isSet[i]){
-						BKELayout.set(i, Executor.AI);
-						toTry = false;
-						break;
-					}
-				}
-			}
-		}
-		if (toTry){
-			//check horizontal
-			for (int i = 0; i < 3; i=i+3){
-				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.AI && hasSet[i+1] == Executor.AI){
-					if (!isSet[i+2]){
-						BKELayout.set(i+2, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.AI && hasSet[i+2] == Executor.AI){
-					if (!isSet[i+2]){
-						BKELayout.set(i+1, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i+2] && isSet[i+3] && hasSet[i+2] == Executor.AI && hasSet[i+3] == Executor.AI){
-					if (!isSet[i]){
-						BKELayout.set(i, Executor.AI);
-						toTry = false;
-						break;
-					}
-				}
 
-			}
-		}
-		//You can't win, block the player if possible
-		if (toTry){
-			//check vertical
-			for (int i = 0; i < 3; i++){
-				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.PLAYER && hasSet[i+3] == Executor.PLAYER){
-					if (!isSet[i+6]){
-						BKELayout.set(i+6, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.PLAYER && hasSet[i+6] == Executor.PLAYER){
-					if (!isSet[i+3]){
-						BKELayout.set(i+3, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.PLAYER && hasSet[i+6] == Executor.PLAYER){
-					if (!isSet[i]){
-						BKELayout.set(i, Executor.AI);
-						toTry = false;
-						break;
-					}
-				}
-			}
-		}
-		if (toTry){
-			//check horizontal
-			for (int i = 0; i < 8; i=i+3){
-				if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
-					if (!isSet[i+2]){
-						BKELayout.set(i+2, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.PLAYER && hasSet[i+2] == Executor.PLAYER){
-					if (!isSet[i+1]){
-						BKELayout.set(i+1, Executor.AI);
-						toTry = false;
-						break;
-					}
-				} else if (isSet[i+2] && isSet[i+1] && hasSet[i+2] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
-					if (!isSet[i]){
-						BKELayout.set(i, Executor.AI);
-						toTry = false;
-						break;
-					}
-				}
-
-			}
-		}
-		if (toTry){
-			//check diagonal
-			if (isSetH(0) && isSetH(4)){
+		//check across
+		if (isSet[0] && isSet[4] && hasSet[0] == Executor.AI && hasSet[4] == Executor.AI){
+			if (!isSet[8]){
 				BKELayout.set(8, Executor.AI);
-				toTry = false;
-			} else if (isSetH(4) && isSetH(8)){
-				BKELayout.set(0, Executor.AI);
-				toTry = false;
-			} else if (isSetH(6) && isSetH(4)){
-				BKELayout.set(2, Executor.AI);
-				toTry = false;
-			} else if (isSetH(2) && isSetH(4)){
-				BKELayout.set(6, Executor.AI);
-				toTry = false;
-			} else if (isSetH(0) && isSetH(8)){
-				BKELayout.set(4, Executor.AI);
-				toTry = false;
-			} else if (isSetH(2) && isSetH(6)){
-				BKELayout.set(4, Executor.AI);
-				toTry = false;
-			}
-		}
-		//no real tactical shizzle found, make a another move
-		if (toTry){
-			if (!isSet[4]){
-				BKELayout.set(4, Executor.AI);
-				toTry = false;
 				return;
 			}
-			for (int i = 1; i < 8; i=i+2){
-				if (!isSet[i]){
-					BKELayout.set(i, Executor.AI);
-					toTry = false;
-					break;
-				}
+		} else if (isSet[4] && isSet[8] && hasSet[4] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
+			if (!isSet[0]){
+				BKELayout.set(0, Executor.AI);
+				return;
 			}
-		}
-		if (toTry){
-			//corners
-			for (int i=0;i<2;i=i+6){
-				if (!isSet[i]){
-					BKELayout.set(i, Executor.AI);
-					toTry = false;
-				} else if (!isSet[i+2]){
-					BKELayout.set(i+2, Executor.AI);
-					toTry = false;
-				}
-			}
-		}
-		if (toTry){
-			//middle
+		} else if (isSet[0] && isSet[8] && hasSet[0] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
 			if (!isSet[4]){
 				BKELayout.set(4, Executor.AI);
-				toTry = false;
+				return;
 			}
 		}
-		if (toTry){
-			//other leftover slot
-			for (int i=0;i<8;i++){
+
+		//check vertical
+		for (int i = 0; i < 3; i++){
+			if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
+				if (!isSet[i+6]){
+					BKELayout.set(i+6, Executor.AI);
+					return;
+				}
+			} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.AI && hasSet[i+6] == Executor.AI){
+				if (!isSet[i+3]){
+					BKELayout.set(i+3, Executor.AI);
+					return;
+				}
+			} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.AI && hasSet[i+6] == Executor.AI){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);
-					toTry=false;
-					break;
+					return;
 				}
+			}
+		}
+
+		//check horizontal
+		for (int i = 0; i < 3; i=i+3){
+			if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.AI && hasSet[i+1] == Executor.AI){
+				if (!isSet[i+2]){
+					BKELayout.set(i+2, Executor.AI);
+					return;
+				}
+			} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.AI && hasSet[i+2] == Executor.AI){
+				if (!isSet[i+2]){
+					BKELayout.set(i+1, Executor.AI);
+					return;
+				}
+			} else if (isSet[i+2] && isSet[i+3] && hasSet[i+2] == Executor.AI && hasSet[i+3] == Executor.AI){
+				if (!isSet[i]){
+					BKELayout.set(i, Executor.AI);
+					return;
+				}
+			}
+
+		}
+		//You can't win, block the player if possible
+
+		//check vertical
+		for (int i = 0; i < 3; i++){
+			if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.PLAYER && hasSet[i+3] == Executor.PLAYER){
+				if (!isSet[i+6]){
+					BKELayout.set(i+6, Executor.AI);
+					return;
+				}
+			} else if (isSet[i] && isSet[i+6] && hasSet[i] == Executor.PLAYER && hasSet[i+6] == Executor.PLAYER){
+				if (!isSet[i+3]){
+					BKELayout.set(i+3, Executor.AI);
+					return;
+				}
+			} else if (isSet[i+3] && isSet[i+6] && hasSet[i+3] == Executor.PLAYER && hasSet[i+6] == Executor.PLAYER){
+				if (!isSet[i]){
+					BKELayout.set(i, Executor.AI);
+					return;
+				}
+			}
+		}
+
+		//check horizontal
+		for (int i = 0; i < 8; i=i+3){
+			if (isSet[i] && isSet[i+1] && hasSet[i] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
+				if (!isSet[i+2]){
+					BKELayout.set(i+2, Executor.AI);
+					return;
+				}
+			} else if (isSet[i] && isSet[i+2] && hasSet[i] == Executor.PLAYER && hasSet[i+2] == Executor.PLAYER){
+				if (!isSet[i+1]){
+					BKELayout.set(i+1, Executor.AI);
+					return;
+				}
+			} else if (isSet[i+2] && isSet[i+1] && hasSet[i+2] == Executor.PLAYER && hasSet[i+1] == Executor.PLAYER){
+				if (!isSet[i]){
+					BKELayout.set(i, Executor.AI);
+					return;
+				}
+			}
+
+		}
+
+		//check diagonal
+		if (isSetH(0) && isSetH(4)){
+			BKELayout.set(8, Executor.AI);
+			return;
+		} else if (isSetH(4) && isSetH(8)){
+			BKELayout.set(0, Executor.AI);
+			return;
+		} else if (isSetH(6) && isSetH(4)){
+			BKELayout.set(2, Executor.AI);
+			return;
+		} else if (isSetH(2) && isSetH(4)){
+			BKELayout.set(6, Executor.AI);
+			return;
+		} else if (isSetH(0) && isSetH(8)){
+			BKELayout.set(4, Executor.AI);
+			return;
+		} else if (isSetH(2) && isSetH(6)){
+			BKELayout.set(4, Executor.AI);
+			return;
+		}
+		//no real tactical shizzle found, make a another move
+
+		//middle
+		if (!isSet[4]){
+			BKELayout.set(4, Executor.AI);
+			return;
+		}
+
+		//corners
+		for (int i=0;i<2;i=i+6){
+			if (!isSet[i]){
+				BKELayout.set(i, Executor.AI);
+				return;
+			} else if (!isSet[i+2]){
+				BKELayout.set(i+2, Executor.AI);
+				return;
+			}
+		}
+
+		for (int i = 1; i < 8; i=i+2){
+			if (!isSet[i]){
+				BKELayout.set(i, Executor.AI);
+				return;
+			}
+		}
+		//other leftover slot
+		for (int i=0;i<8;i++){
+			if (!isSet[i]){
+				BKELayout.set(i, Executor.AI);
+				return;
 			}
 		}
 		check();
