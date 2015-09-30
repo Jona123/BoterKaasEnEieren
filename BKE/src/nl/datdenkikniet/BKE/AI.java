@@ -199,39 +199,40 @@ public class AI {
 			}
 		}
 		if (toTry){
-			//check across
-			if (isSet[0] && isSet[4] && hasSet[0] == Executor.PLAYER && hasSet[4] == Executor.PLAYER){
-				if (!isSet[8]){
-					BKELayout.set(8, Executor.AI);
-					toTry = false;
-				}
-			} else if (isSet[4] && isSet[8] && hasSet[4] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
-				if (!isSet[0]){
-					BKELayout.set(0, Executor.AI);
-					toTry = false;
-				}
-			} else if (isSet[0] && isSet[8] && hasSet[0] == Executor.PLAYER && hasSet[8] == Executor.PLAYER){
-				if (!isSet[4]){
-					BKELayout.set(4, Executor.AI);
-					toTry = false;
-				}
+			//check diagonal
+			if (isSetH(0) && isSetH(4)){
+				BKELayout.set(8, Executor.AI);
+				toTry = false;
+			} else if (isSetH(4) && isSetH(8)){
+				BKELayout.set(0, Executor.AI);
+				toTry = false;
+			} else if (isSetH(6) && isSetH(4)){
+				BKELayout.set(2, Executor.AI);
+				toTry = false;
+			} else if (isSetH(2) && isSetH(4)){
+				BKELayout.set(6, Executor.AI);
+				toTry = false;
+			} else if (isSetH(0) && isSetH(8)){
+				BKELayout.set(4, Executor.AI);
+				toTry = false;
+			} else if (isSetH(2) && isSetH(6)){
+				BKELayout.set(4, Executor.AI);
+				toTry = false;
 			}
 		}
 		//no real tactical shizzle found, make a another move
 		if (toTry){
+			if (!isSet[4]){
+				BKELayout.set(4, Executor.AI);
+				toTry = false;
+				return;
+			}
 			for (int i = 1; i < 8; i=i+2){
 				if (!isSet[i]){
 					BKELayout.set(i, Executor.AI);
 					toTry = false;
 					break;
 				}
-			}
-		}
-		if (toTry){
-			//middle
-			if (!isSet[4]){
-				BKELayout.set(4, Executor.AI);
-				toTry = false;
 			}
 		}
 		if (toTry){
@@ -247,6 +248,13 @@ public class AI {
 			}
 		}
 		if (toTry){
+			//middle
+			if (!isSet[4]){
+				BKELayout.set(4, Executor.AI);
+				toTry = false;
+			}
+		}
+		if (toTry){
 			//other leftover slot
 			for (int i=0;i<8;i++){
 				if (!isSet[i]){
@@ -257,5 +265,10 @@ public class AI {
 			}
 		}
 		check();
+	}
+	private static boolean isSetH(int i){
+		Boolean[] isSet = BKELayout.getCellsAffected();
+		Executor[] hasSet = BKELayout.getWhoSet();
+		return isSet[i] && hasSet[i] == Executor.PLAYER;
 	}
 }
