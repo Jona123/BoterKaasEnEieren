@@ -101,10 +101,6 @@ public class AI {
 		}
 		if (toTry){
 			//check vertical
-			if (!isSet[4]){
-				BKELayout.set(4, Executor.AI);
-				return;
-			}
 			for (int i = 0; i < 3; i++){
 				if (isSet[i] && isSet[i+3] && hasSet[i] == Executor.AI && hasSet[i+3] == Executor.AI){
 					if (!isSet[i+6]){
